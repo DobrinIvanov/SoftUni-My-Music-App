@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-r2_i39g2=dg-!(^ryk5nre&9n9yqo2!bh*aorr6yqg9=zpnr@+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -37,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'my_music_app.mymusicapp',
 ]
 
 MIDDLEWARE = [
@@ -76,8 +81,12 @@ WSGI_APPLICATION = 'my_music_app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'mymusicapp_db',
+        'USER': 'postgres-user',
+        'PASSWORD': 'password',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
