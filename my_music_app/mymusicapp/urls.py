@@ -16,3 +16,4 @@ urlpatterns = (
         path('delete/', delete_profile, name='delete_profile'),
     ]))
 )
+
