@@ -1,10 +1,14 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
 <!--Details Page-->
 <section id="detailsPage">
     <div class="wrapper">
 
         <div class="albumCover">
             <!-- Album Image -->
-            <img src="/images/Lorde.jpg" alt="Cover Image">
+            <img src="{% static 'images/Lorde.jpg' %}" alt="Cover Image">
         </div>
 
         <div class="albumInfo">
@@ -29,3 +33,4 @@
         </div>
     </div>
 </section>
+{% endblock %}

@@ -4,28 +4,35 @@ from django.shortcuts import render
 
 
 def index(request):
-    pass
+    context = {}
+    return render(request, 'core/home-with-profile.html', context)
 
 
 def add_album(request):
-    pass
+    context = {}
+    return render(request, 'album/add-album.html', context)
 
 
 def details_album(request, pk):
-    pass
+    context = {}
+    return render(request, 'album/album-details.html', context)
 
 
 def edit_album(request, pk):
-    pass
+    context = {}
+    return render(request, 'album/edit-album.html', context)
 
 
 def delete_album(request, pk):
-    pass
+    context = {}
+    return render(request, 'album/delete-album.html', context)
 
 
 def details_profile(request):
-    pass
+    context = {}
+    return render(request, 'profile/profile-details.html', context)
 
 
 def delete_profile(request):
-    pass
+    context = {}
+    return render(request, 'profile/profile-delete.html', context)

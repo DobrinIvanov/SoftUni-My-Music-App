@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 <!-- Catalog with Albums-->
 <section id="catalogPage">
 
@@ -8,7 +11,7 @@
     <h1>All Albums</h1>
     <!-- First Card-Box in catalog -->
     <div class="card-box">
-        <img src="/images/BrandiCarlile.png" alt="Cover Image">
+        <img src="{% static 'images/BrandiCarlile.png' %}" alt="Cover Image">
         <div>
             <div class="text-center">
                 <p class="name">Name: In These Silent Days</p>
@@ -25,7 +28,7 @@
 
     <!-- Second Card-Box in catalog -->
     <div class="card-box">
-        <img src="/images/pinkFloyd.jpg">
+        <img src="{% static 'images/pinkFloyd.jpg' %}">
         <div>
             <div class="text-center">
                 <p class="name">Name: The Dark Side of the Moon</p>
@@ -42,7 +45,7 @@
 
     <!-- Third Card-Box in catalog -->
     <div class="card-box">
-        <img src="/images/Lorde.jpg">
+        <img src="{% static 'images/Lorde.jpg' %}">
         <div>
             <div class="text-center">
                 <p class="name">Name: Melodrama</p>
@@ -58,3 +61,4 @@
     <!-- End Third Card-Box in catalog -->
 
 </section>
+{% endblock %}
