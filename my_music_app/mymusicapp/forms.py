@@ -14,7 +14,7 @@ class AddProfileForm(forms.ModelForm):
         }
 
 
-class AddAlbumForm(forms.ModelForm):
+class AlbumForm(forms.ModelForm):
     class Meta:
         model = Album
         fields = '__all__'
@@ -24,6 +24,11 @@ class AddAlbumForm(forms.ModelForm):
             # 'genre': forms.Select(choices=Album.GENRES),
             'description': forms.Textarea(attrs={'placeholder': 'Description'}, ),
             'image_url': forms.TextInput(attrs={'placeholder': 'Image URL'}, ),
-            'price': forms.NumberInput(attrs={'placeholder': 'Price', 'step': '0.01'}, ),
+            'price': forms.NumberInput(attrs={'placeholder': 'Price', }, ),
         }
+
+# class EditAlbumForm(forms.ModelForm):
+#     class Meta:
+#         model = Album
+#         fields = '__all__'
 

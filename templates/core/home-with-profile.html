@@ -13,13 +13,13 @@
     <!-- First Card-Box in catalog -->
     {% for album in albums %}
     <div class="card-box">
-        <img src="{% static 'images/BrandiCarlile.png' %}" alt="Cover Image">
+        <img src="{{ album.image_url }}" alt="Cover Image">
         <div>
             <div class="text-center">
                 <p class="name">Name: {{ album.name }}</p>
                 <p class="artist">Artist: {{ album.artist }}</p>
                 <p class="genre">Genre: {{ album.genre }}</p>
-                <p class="price">Price: {{ album.price }}</p>
+                <p class="price">Price: ${{ album.price }}</p>
             </div>
             <div class="btn-group">
                 <a href="{% url 'details_album' pk=album.pk %}">Details</a>
