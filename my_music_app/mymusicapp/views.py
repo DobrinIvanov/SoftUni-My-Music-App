@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 
-from my_music_app.mymusicapp.forms import AddProfileForm, AlbumForm
+from my_music_app.mymusicapp.forms import AddProfileForm, AlbumBaseForm, DeleteAlbumForm
 from my_music_app.mymusicapp.functions import get_profile
-from my_music_app.mymusicapp.models import Album
+from my_music_app.mymusicapp.models import Album, Profile
 
 
 # Create your views here.
@@ -42,9 +42,9 @@ def add_profile(request):
 
 def add_album(request):
     if request.method == "GET":
-        album_form = AlbumForm()
+        album_form = AlbumBaseForm()
     else:
-        album_form = AlbumForm(request.POST)
+        album_form = AlbumBaseForm(request.POST)
         if album_form.is_valid():
             album_form.save()
             return redirect('index')
@@ -67,9 +67,9 @@ def edit_album(request, pk):
     album = Album.objects.get(pk=pk)
 
     if request.method == 'GET':
-        create_album_form = AlbumForm(instance=album)
+        create_album_form = AlbumBaseForm(instance=album)
     else:
-        create_album_form = AlbumForm(request.POST, instance=album)
+        create_album_form = AlbumBaseForm(request.POST, instance=album)
         if create_album_form.is_valid():
             create_album_form.save()
             return redirect('index')
@@ -81,18 +81,44 @@ def edit_album(request, pk):
 
     return render(request, 'album/edit-album.html', context)
 
+# To make fields Disable in ModelForm
+# def init(self, args, **kwargs):
+#     super().init(args, **kwargs)
+#     self.__disable_fields()
+#
+#
+# def __disablefields(self):
+#     for , field in self.fields.items():
+#         field.widget.attrs["readonly"] = "disable"
+
 
 def delete_album(request, pk):
-    context = {}
+    album = Album.objects.filter(pk=pk).get()
+    if request.method == 'POST':
+        album.delete()
+        return redirect('index')
+    form = DeleteAlbumForm(instance=album)
+    context = {
+        'form': form,
+        'pk': pk,
+    }
     return render(request, 'album/delete-album.html', context)
 
 
 def details_profile(request):
-    context = {}
+    profile = Profile.objects.get()
+    albums_count = Album.objects.all().count()
+    context = {
+        'profile': profile,
+        'count': albums_count,
+    }
     return render(request, 'profile/profile-details.html', context)
 
 
 def delete_profile(request):
+    if request.method == 'POST':
+        Profile.objects.get().delete()
+        return redirect('index')
     context = {}
     return render(request, 'profile/profile-delete.html', context)
 

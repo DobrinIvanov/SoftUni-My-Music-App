@@ -14,7 +14,7 @@ class AddProfileForm(forms.ModelForm):
         }
 
 
-class AlbumForm(forms.ModelForm):
+class AlbumBaseForm(forms.ModelForm):
     class Meta:
         model = Album
         fields = '__all__'
@@ -27,8 +27,24 @@ class AlbumForm(forms.ModelForm):
             'price': forms.NumberInput(attrs={'placeholder': 'Price', }, ),
         }
 
-# class EditAlbumForm(forms.ModelForm):
-#     class Meta:
-#         model = Album
-#         fields = '__all__'
 
+class EditAlbumForm(AlbumBaseForm):
+    pass
+
+
+class DeleteAlbumForm(AlbumBaseForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.__disable_fields()
+
+    def __disable_fields(self):
+        for _, field in self.fields.items():
+            field.widget.attrs["disabled"] = ""
+            # field.required = False
+
+    def __disable_select_field(self):
+        pass
+
+
+# class DeleteProfileForm(forms.Form):
+#     pass

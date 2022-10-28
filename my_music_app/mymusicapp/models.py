@@ -27,7 +27,7 @@ class Profile(models.Model):
     )
 
     age = models.PositiveIntegerField(
-        null=False,
+        null=True,
         blank=True,
     )
 
